@@ -1,0 +1,46 @@
+# Ignore build outputs and user-specific files
+bin/
+obj/
+*.user
+*.suo
+*.userprefs
+*.csproj.user
+
+# Ignore Visual Studio-specific folders
+.vs/
+.idea/
+.vscode/
+
+# Ignore NuGet packages
+packages/
+*.nupkg
+*.snupkg
+
+# Ignore logs, databases, and temporary files
+*.log
+*.sql
+*.sqlite
+*.mdf
+*.ldf
+
+# Ignore secrets and configurations
+appsettings.*.json
+secrets.json
+
+# Ignore temporary files and backups
+*.tmp
+*.bak
+*.old
+*.swp
+
+# Ignore Swagger and API documentation artifacts (if generated)
+swagger.json
+swagger-ui/
+
+# Ignore deployment files
+publish/
+wwwroot/
+
+# Ignore Resharper, Rider, and other IDE files
+*.DotSettings.user
+.idea/
