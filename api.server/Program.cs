@@ -1,3 +1,10 @@
+using Core.Mongo;
+using api.server.Repository;
+using FirebaseAdmin;
+using Google.Apis.Auth.OAuth2;
+using Microsoft.Extensions.Configuration;
+using Core.Firebase;
+
 
 namespace api.server
 {
@@ -23,6 +30,10 @@ namespace api.server
             // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
+            ///Mongo
+            builder.Services.AddMongoDb(builder.Configuration);
+            builder.Services.AddFirebaseApp(builder.Configuration);
 
             var app = builder.Build();
             

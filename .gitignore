@@ -26,6 +26,7 @@ packages/
 # Ignore secrets and configurations
 appsettings.*.json
 secrets.json
+firebase-config.json
 
 # Ignore temporary files and backups
 *.tmp
