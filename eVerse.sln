@@ -5,6 +5,10 @@ VisualStudioVersion = 17.12.35506.116
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "api.server", "api.server\api.server.csproj", "{600B7DCA-172A-4613-84FE-51D9ACC6741C}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "shared", "shared", "{2DF4B119-C898-443B-AB6A-0369BDA9E6FE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shared.Protocol", "shared\Shared.Protocol\Shared.Protocol.csproj", "{1BBDE5F5-C767-4D49-AF1F-7D12047F512C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,8 +19,15 @@ Global
 		{600B7DCA-172A-4613-84FE-51D9ACC6741C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{600B7DCA-172A-4613-84FE-51D9ACC6741C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{600B7DCA-172A-4613-84FE-51D9ACC6741C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1BBDE5F5-C767-4D49-AF1F-7D12047F512C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1BBDE5F5-C767-4D49-AF1F-7D12047F512C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1BBDE5F5-C767-4D49-AF1F-7D12047F512C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1BBDE5F5-C767-4D49-AF1F-7D12047F512C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{1BBDE5F5-C767-4D49-AF1F-7D12047F512C} = {2DF4B119-C898-443B-AB6A-0369BDA9E6FE}
 	EndGlobalSection
 EndGlobal

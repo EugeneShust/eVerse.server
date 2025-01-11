@@ -20,4 +20,8 @@
     <Folder Include="Core\Mongo\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\shared\Shared.Protocol\Shared.Protocol.csproj" />
+  </ItemGroup>
+
 </Project>
