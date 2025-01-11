@@ -45,6 +45,7 @@ namespace api.server
 
             builder.Services.AddRepository<AccountRepository>();
             builder.Services.AddRepository<UserRepository>();
+            builder.Services.AddRepository<VerseRepository>();
 
             builder.Services.AddSingleton<JwtSecurityService>();
             builder.Services.AddAutoMapper(typeof(MappingProfile));
