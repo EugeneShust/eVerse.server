@@ -26,7 +26,8 @@ namespace Core.Mongo
 
         public IMongoCollection<TModel> Collection { get; }
         public IMongoDatabase Database => Collection.Database;
-        
+        public UpdateDefinitionBuilder<TModel> Update => Builders<TModel>.Update;
+
         public async Task CreateAsync(TModel model)
         {
             await Collection.InsertOneAsync(model);
@@ -35,6 +36,23 @@ namespace Core.Mongo
         public Task<TModel> FindOneAsync(Expression<Func<TModel, bool>> filter)
         {
             return Collection.Find(filter).FirstOrDefaultAsync();
+        }
+
+        public Task<List<TModel>> FindManyAsync(Expression<Func<TModel, bool>> filter)
+        {
+            return Collection.Find(filter).ToListAsync();
+        }
+
+        public Task<List<TProjection>> FindManyAsync<TProjection>(Expression<Func<TModel, bool>> filter, Expression<Func<TModel, TProjection>> projection)
+        {
+            return Collection.Find(filter).Project(projection).ToListAsync();
+        }
+
+        public Task<UpdateResult> UpdateOneAsync(Expression<Func<TModel, bool>> filter, params UpdateDefinition<TModel>[] updates)
+        {
+            var update = Update.Combine(updates);
+
+            return Collection.UpdateOneAsync(filter, update);
         }
 
         public Task<long> CountAsync()
