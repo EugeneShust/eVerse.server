@@ -1,5 +1,5 @@
-﻿using Core.Mongo;
-using FirebaseAdmin;
+﻿using FirebaseAdmin;
+using FirebaseAdmin.Auth;
 using Google.Apis.Auth.OAuth2;
 
 namespace Core.Firebase
@@ -23,6 +23,13 @@ namespace Core.Firebase
 
                 return FirebaseApp.DefaultInstance;
             });
+
+            services.AddSingleton(sp =>
+            {
+                var firebaseApp = sp.GetRequiredService<FirebaseApp>();
+                return FirebaseAuth.GetAuth(firebaseApp);
+            });
+
 
             return services;
         }
