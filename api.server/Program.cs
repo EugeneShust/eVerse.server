@@ -1,5 +1,5 @@
 using Core.Mongo;
-using api.server.Repository;
+using API.Server.Repository;
 using Core.Firebase;
 using System.Text.Json;
 using Internal.Middleware;
@@ -43,6 +43,8 @@ namespace api.server
             builder.Services.AddMongoDb(builder.Configuration);
             builder.Services.AddGridFS(builder.Configuration);
 
+            builder.Services.AddRepository<AccountRepository>();
+            builder.Services.AddRepository<UserRepository>();
 
             builder.Services.AddSingleton<JwtSecurityService>();
             builder.Services.AddAutoMapper(typeof(MappingProfile));
