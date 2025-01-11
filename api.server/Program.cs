@@ -1,10 +1,13 @@
 using Core.Mongo;
 using api.server.Repository;
+using Core.Firebase;
+using System.Text.Json;
+using Internal.Middleware;
+using API.Server.Core.Firebase;
+using API.Server.Internal.Utils;
 using FirebaseAdmin;
 using Google.Apis.Auth.OAuth2;
-using Microsoft.Extensions.Configuration;
-using Core.Firebase;
-
+using API.Server.Mapping;
 
 namespace api.server
 {
@@ -22,18 +25,27 @@ namespace api.server
                 {
                     policy.WithOrigins("http://localhost:5173")
                           .AllowAnyHeader() 
-                          .AllowAnyMethod();
+                          .AllowAnyMethod()
+                          .WithExposedHeaders("Location");
                 });
             });
 
-            builder.Services.AddControllers();
+            builder.Services.AddControllers().AddJsonOptions(options =>
+            {
+                options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
+            });
+
             // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
-            ///Mongo
-            builder.Services.AddMongoDb(builder.Configuration);
             builder.Services.AddFirebaseApp(builder.Configuration);
+            builder.Services.AddMongoDb(builder.Configuration);
+            builder.Services.AddGridFS(builder.Configuration);
+
+
+            builder.Services.AddSingleton<JwtSecurityService>();
+            builder.Services.AddAutoMapper(typeof(MappingProfile));
 
             var app = builder.Build();
             
@@ -52,7 +64,10 @@ namespace api.server
 
             app.UseHttpsRedirection();
 
-            app.UseAuthorization();
+            app.UseRouting();
+
+            app.UseMiddleware<FirebaseAuthenticationMiddleware>();
+            app.UseMiddleware<JwtAuthenticationMiddleware>();
 
             app.MapControllers();
 
