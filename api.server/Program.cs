@@ -30,6 +30,7 @@ namespace api.server
             builder.Services.AddControllers().AddJsonOptions(options =>
             {
                 options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
+                //PropertyNameCaseInsensitive = true
             });
 
             // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi

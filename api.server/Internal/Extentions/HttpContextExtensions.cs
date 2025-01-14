@@ -10,11 +10,12 @@ namespace Internal.Extentions
             return context.Items["FirebaseToken"] as FirebaseToken;
         }
 
-        public static string? GetUserId(this HttpContext context)
+        public static string GetUserId(this HttpContext context)
         {
+            // TODO refactor!
             if (context.User == null || !context.User.Identity.IsAuthenticated)
             {
-                return null;
+                throw new Exception("Unauthorized");
             }
 
             return context.User.FindFirst("id")?.Value;

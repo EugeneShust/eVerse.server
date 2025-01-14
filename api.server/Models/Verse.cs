@@ -1,6 +1,7 @@
 ﻿using Core.Mongo;
 using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Bson;
+using static API.Server.Models.BaseItem;
 
 namespace API.Server.Models
 {
@@ -14,64 +15,56 @@ namespace API.Server.Models
         public string Logo { get; set; }
         public string Map { get; set; }
 
-        public List<Event> Events { get; set; } = [];
-        public List<Location> Locations { get; set; } = [];
-        public List<Category> Categories { get; set; } = [];
-        public List<Presenter> Presenters { get; set; } = [];
 
+        public List<Category> Categories { get; set; } = [];
+        public List<Location> Locations { get; set; } = [];
+        public List<Presenter> Presenters { get; set; } = [];
+        public List<Event> Events { get; set; } = [];
+
+        public List<Participant> Participants { get; set; } = [];
     }
 
-    public class Event
+    public class Participant
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
-        public string EventId { get; set; } = ObjectId.GenerateNewId().ToString();
+        public string Id { get; set; } = ObjectId.GenerateNewId().ToString();
+        public bool IsActive { get; set; } = true;
+    }
 
-        public string Title { get; set; }
+    public class BaseItem
+    {
+        [BsonId]
+        [BsonRepresentation(BsonType.ObjectId)]
+        public string Id { get; set; } = ObjectId.GenerateNewId().ToString();
+
+        public string Name { get; set; }
         public string Description { get; set; }
-        public DateTime Start { get; set; }
-        public DateTime End { get; set; }
+    }
 
+    public class Event : BaseItem
+    {
         public string LocationId { get; set; }
         public string CategoryId { get; set; }
-        public List<string> PresenterIds { get; set; } = [];
-    }
-    
-    public class Location
-    {
-        [BsonId]
-        [BsonRepresentation(BsonType.ObjectId)]
-        public string LocationId { get; set; } = ObjectId.GenerateNewId().ToString();
-        public string Name { get; set; }
-        public string Description { get; set; }
         public DateTime Start { get; set; }
         public DateTime End { get; set; }
-        public LocationCoords Coords { get; set; } 
+        public List<string> PresenterIds { get; set; } = [];
     }
 
-    public class Presenter
+    public class Location : BaseItem
     {
-        [BsonId]
-        [BsonRepresentation(BsonType.ObjectId)]
-        public string PresenterId { get; set; } = ObjectId.GenerateNewId().ToString();
-        public string Name { get; set; }
-        public string Description { get; set; }
+        public LocationCoords Coords { get; set; }
     }
 
-    public class Category
-    {
-        [BsonId]
-        [BsonRepresentation(BsonType.ObjectId)]
-        public string CategoryId { get; set; } = ObjectId.GenerateNewId().ToString();
-        public string Name { get; set; }
-        public string Description { get; set; }
-    }
+    public class Presenter : BaseItem { }
+
+    public class Category : BaseItem { }
 
     public class LocationCoords
     {
         public double Latitude { get; set; }
         public double Longitude { get; set; }
-        public int X { get; set; } 
+        public int X { get; set; }
         public int Y { get; set; }
     }
 }

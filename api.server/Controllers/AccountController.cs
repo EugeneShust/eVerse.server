@@ -36,7 +36,7 @@ namespace api.server.Controllers
             try
             {
                 var token = HttpContext.GetFirebaseToken();
-                
+
                 if (token == null)
                 {
                     return Unauthorized("Firebase user not found");
@@ -74,9 +74,9 @@ namespace api.server.Controllers
                 };
 
                 await _users.CreateAsync(user);
-                
+
                 var response = new RegistrationResponse { UserId = user.Id };
-                
+
                 return CreatedAtAction(nameof(Authentication), response);
             }
             catch (Exception error)
@@ -114,6 +114,28 @@ namespace api.server.Controllers
             var jwt = _jwtService.GenerateJwt(user.Id);
 
             return Ok(new { token = jwt, userId = user.Id, location = $"/user/profile" });
+        }
+
+        [HttpPost]
+        [Route("fcmToken")]
+        public async Task<IActionResult> UpdateFCMToken(string? token)
+        {
+            var userId = HttpContext.GetUserId();
+
+            if (userId == null)
+            {
+                return Unauthorized();
+            }
+
+            var account = await _accounts.FindOneAsync(x => x.Id == userId);
+
+            if (account == null) return NotFound();
+
+            account.FCMToken = token;
+
+            await _accounts.ReplaceOneAsync(x => x.Id == account.Id, account);
+
+            return Ok();
         }
     }
 }

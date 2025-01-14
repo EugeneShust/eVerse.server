@@ -7,6 +7,7 @@ namespace API.Server.Models
     public class Account: ModelBase
     {
         public required string FirebaseUid { get; set; }
+        public string FCMToken { get; set; }
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
     }
 }

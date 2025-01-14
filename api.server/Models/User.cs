@@ -14,7 +14,18 @@ namespace API.Server.Models
         [BsonRepresentation(BsonType.ObjectId)]
         public List<string> Verses { get; set; } = [];
 
+        public List<Favorite> Favorites { get; set; } = [];
+    }
+
+    public class Favorite
+    {
+        [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
-        public List<string> Favorites { get; set; } = [];
+        public string Id { get; set; } = string.Empty;
+
+        public bool IsActive { get; set; } = true;
+
+        [BsonRepresentation(BsonType.ObjectId)]
+        public List<string> Events { get; set; } = [];
     }
 }
