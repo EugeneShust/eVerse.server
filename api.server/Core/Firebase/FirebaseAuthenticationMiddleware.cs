@@ -1,7 +1,7 @@
 ﻿using FirebaseAdmin.Auth;
 using Microsoft.AspNetCore.Authorization;
 
-namespace API.Server.Core.Firebase
+namespace Core.Firebase
 {
     public class FirebaseAuthenticationMiddleware
     {

@@ -3,10 +3,7 @@ using API.Server.Repository;
 using Core.Firebase;
 using System.Text.Json;
 using Internal.Middleware;
-using API.Server.Core.Firebase;
 using API.Server.Internal.Utils;
-using FirebaseAdmin;
-using Google.Apis.Auth.OAuth2;
 using API.Server.Mapping;
 
 namespace api.server

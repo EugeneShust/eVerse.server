@@ -1,5 +1,6 @@
 ﻿using FirebaseAdmin;
 using FirebaseAdmin.Auth;
+using FirebaseAdmin.Messaging;
 using Google.Apis.Auth.OAuth2;
 
 namespace Core.Firebase
@@ -30,6 +31,13 @@ namespace Core.Firebase
                 return FirebaseAuth.GetAuth(firebaseApp);
             });
 
+            services.AddSingleton<FirebaseMessaging>(sp =>
+            {
+                var firebaseApp = sp.GetRequiredService<FirebaseApp>();
+                return FirebaseMessaging.GetMessaging(firebaseApp);
+            });
+
+            services.AddScoped<FirebaseService>();
 
             return services;
         }
