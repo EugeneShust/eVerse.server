@@ -22,6 +22,8 @@ namespace Core.Mongo
 
         Task<UpdateResult> UpdateOneAsync(Expression<Func<TModel, bool>> filter, params UpdateDefinition<TModel>[] updates);
 
+        Task<ReplaceOneResult> ReplaceOneAsync(Expression<Func<TModel, bool>> filter, TModel replacement);
+
         Task<long> CountAsync();
     }
 }

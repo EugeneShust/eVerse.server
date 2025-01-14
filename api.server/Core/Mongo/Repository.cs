@@ -55,6 +55,11 @@ namespace Core.Mongo
             return Collection.UpdateOneAsync(filter, update);
         }
 
+        public Task<ReplaceOneResult> ReplaceOneAsync(Expression<Func<TModel, bool>> filter, TModel replacement)
+        {
+            return Collection.ReplaceOneAsync(filter, replacement);
+        }
+
         public Task<long> CountAsync()
         {
             throw new NotImplementedException();
