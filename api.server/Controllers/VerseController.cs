@@ -28,7 +28,14 @@ namespace API.Server.Controllers
         {
             var userId = HttpContext.GetUserId();
 
-            var newVerse = new Verse { AuthorId = userId, Logo = request.Logo, Name = request.Name, Start = request.Start, End = request.End };
+            var newVerse = new Verse
+            {
+                AuthorId = userId,
+                Logo = request.Logo,
+                Name = request.Name,
+                Start = request.Start,
+                End = request.End
+            };
 
             await _verseRepository.CreateAsync(newVerse);
 
@@ -128,7 +135,7 @@ namespace API.Server.Controllers
             }
 
             await _verseRepository.ReplaceOneAsync(x => x.Id == verse.Id, verse);
-            return Ok(new VerseItemUpdateResponse { id = newId });
+            return Ok(new VerseItemUpdateResponse { Id = newId });
         }
 
         [HttpPut("{id}/{type}")]
