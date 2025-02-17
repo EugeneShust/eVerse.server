@@ -21,7 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\shared\Shared.Protocol\Shared.Protocol.csproj" />
+    <ProjectReference Include="..\Shared\src\Shared.Protocol\Shared.Protocol.csproj" />
   </ItemGroup>
 
 </Project>

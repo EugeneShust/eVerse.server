@@ -1,3 +1,4 @@
-[submodule "shared"]
-	path = shared
-	url = git@github.com:EugeneShust/eVerse.shared.git
+[submodule "src/Shared"]
+	path = src/Shared
+	url = git@github.com:YevhenShust/eVerse.shared.git
+	branch = main

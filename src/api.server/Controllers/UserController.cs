@@ -7,6 +7,7 @@ using AutoMapper;
 using Shared.Protocol.Dtos;
 using API.Server.Models;
 using Microsoft.Extensions.Logging;
+using System.Text.Json;
 
 namespace api.server.Controllers
 {
@@ -30,6 +31,23 @@ namespace api.server.Controllers
 
             return Ok(response);
         }
+
+        //[HttpPut]
+        //[Route("profile")]
+        //public async Task<IActionResult> Profile([FromBody] dynamic request)
+        //{
+        //    var userId = HttpContext.GetUserId();
+
+        //    var p = (User)(request);
+
+        //    _mapper.Map<Category>(JsonSerializer.Deserialize<ProfileRequest>(item.ToString()));
+
+        //    var user = await _users.ReplaceOneAsync(x => x.Id == userId, p);
+
+        //    var response = _mapper.Map<ProfileResponse>(user);
+
+        //    return Ok(response);
+        //}
 
         [HttpPost("profile/avatar")]
         public async Task<IActionResult> UploadAvatar(IFormFile file)

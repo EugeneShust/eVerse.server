@@ -10,7 +10,14 @@ namespace API.Server.Mapping
     {
         public MappingProfile()
         {
-            CreateMap<User, ProfileResponse>();
+            CreateMap<User, ProfileResponse>().ForMember(
+                dest => dest.Favorites,
+                opt => opt.MapFrom(src => src.Favorites
+                    .Where(e => e.IsActive)
+                    .Select(e => e)
+                    .ToList())
+            );
+
             CreateMap<Favorite, FavoriteDto>();
 
             CreateMap<Verse, VersePreviewDto>();
